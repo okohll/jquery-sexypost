@@ -58,7 +58,7 @@
 
       xhr.onload = function(event) {
         if (config.autoclear && (xhr.status >= 200) && (xhr.status <= 204)) clearFields(form);
-        form.trigger("sexyPost.complete", [xhr.responseText]);
+        form.trigger("sexyPost.complete", [xhr.responseText, xhr.status]);
       }
 
       xhr.onerror = function(event) {
