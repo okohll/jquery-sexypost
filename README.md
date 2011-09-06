@@ -59,8 +59,9 @@ Submit Events
 
 And these properties:
 
-    async    : true                                          // set to true to submit the form asynchronously
-    autoclear: false                                         // automatically clear the form on successful post
+    async        : true                                      // set to true to submit the form asynchronously
+    autoclear    : false                                     // automatically clear the form on successful post
+    requestHeader: null,                                     // additional request headers to send
 
 Submit Triggers
 ---------------
@@ -71,6 +72,22 @@ You do this by assigning the `submit-trigger` class:
     <img src="/images/button.png" class="submit-trigger" />
     
 Now when the user has clicked on the button image or selected a file (or files) the form is automatically submitted.
+
+Request Headers
+---------------
+You can specify additional request headers to send by creating an array like so:
+
+    var headers = new Array();
+    headers["Accept"] = "text/*, text/html, text/html;level=1, */*";
+    
+And setting the `requestHeader` property when binding `sexyPost` to your form elements:
+
+    $(form).sexyPost({
+      requestHeader: header,
+      
+      progress: function(...) { ... },
+      complete: function(...) { ... }
+    })
 
 How It Works
 ------------
@@ -90,6 +107,12 @@ and [Haml](http://haml-lang.com/). To see it in action:
 License
 -------
 Dual licensed under the MIT or GPL Version 2 licenses.
+
+Credits
+-------
+* [jurisgalang](https://github.com/jurisgalang) (owner)
+* [chatgris](https://github.com/chatgris) (contributor)
+* [codler](https://github.com/codler) (feedback)
 
 
 ---

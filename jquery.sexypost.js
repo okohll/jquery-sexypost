@@ -2,7 +2,7 @@
  * jQuery.sexyPost v1.0.0
  * http://github.com/jurisgalang/jquery-sexypost
  *
- * Copyright 2010, Juris Galang
+ * Copyright 2010 - 2011, Juris Galang
  * Dual licensed under the MIT or GPL Version 2 licenses.
  *
  * Date: Sat June 26 14:20:01 2010 -0800
@@ -12,8 +12,9 @@
     var events = [ "start", "progress", "complete", "error", "abort", "filestart", "filecomplete" ];
     var config = {
       // options
-      async    : true,                                           // set to true to submit the form asynchronously
-      autoclear: false,                                          // automatically clear the form on successful post
+      async        : true,                                     // set to true to submit the form asynchronously
+      autoclear    : false,                                    // automatically clear the form on successful post
+      requestHeader: null,                                     // additional request headers to send
 
       // events
       start   : function(event) { },                           // triggered right before the form is submitted
@@ -36,8 +37,8 @@
       var form = $(this);
 
       form.submit(function(){
-        var action = $(this).attr("action");
-        var method = $(this).attr("method");
+        var action = $(this).prop("action");
+        var method = $(this).prop("method");
         send(this, action, method, config.async);
         return false;
       });
@@ -86,19 +87,26 @@
         var data = new FormData();
 
         var fields = $(form).serializeArray();
-        $.each(fields, function(){
-          data.append($(this).attr("name"), $(this).val());
+        $.each(fields, function(index, field){
+          data.append(field.name, field.value)
         });
 
         $("input:file", form).each(function(){
           var files = this.files;
-          for (i=0; i<files.length; i++) data.append($(this).attr("name"), files[i]);
+          for (i=0; i<files.length; i++) data.append($(this).prop("name"), files[i]);
         });
 
-        // now send the serialized fields over
+        // configure the request headers
         xhr.open(method, action, async);
+        if (config.requestHeader) {
+          for (var key in config.requestHeader) {
+             xhr.setRequestHeader(key, config.requestHeader[key]);
+          }
+        }
         xhr.setRequestHeader("Cache-Control", "no-cache");
         xhr.setRequestHeader("X-Requested-With", "XMLHttpRequest");
+
+        // send the serialized fields over
         xhr.send(data);
       }
     });

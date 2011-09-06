@@ -2,7 +2,8 @@
 require 'rubygems'
 require 'sinatra'
 require 'haml'
-require 'sass'
+require 'rdiscount'
+require 'coderay'
 
 get "/" do
   haml :index
@@ -15,5 +16,4 @@ end
 
 get "/default.css" do
   content_type "text/css", :charset => "utf-8"
-  sass :default
 end

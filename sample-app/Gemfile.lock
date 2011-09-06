@@ -1,8 +1,10 @@
 GEM
   remote: http://rubygems.org/
   specs:
+    coderay (0.9.8)
     haml (3.0.25)
     rack (1.2.1)
+    rdiscount (1.6.8)
     sinatra (1.1.2)
       rack (~> 1.1)
       tilt (~> 1.2)
@@ -12,5 +14,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  coderay
   haml
+  rdiscount
   sinatra
