@@ -16,5 +16,5 @@ task :default do
   copyright.gsub!(/^  /, "")
   File.open(latest, "w"){ |f| f.print copyright }
   sh "bin/jsmin < jquery.sexypost.js >> #{latest}"
-  #sh "ln -s #{latest} sample-app/public/javascripts/jquery.sexypost-latest.js"
+  # sh "ln -sf #{latest} sample-app/public/javascripts/jquery.sexypost-latest.js"
 end
