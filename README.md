@@ -6,7 +6,7 @@ of a form send or a file upload.
 
 Requirements
 ------------
-+ jQuery version 1.4.2 and up (will likely work on older versions)
++ jQuery version 1.6.x
 + HTML5 ready browsers (eg: Safari 5.0+, Firefox 4.0+, Chrome 6.0+)
 
 Usage
@@ -19,7 +19,7 @@ Then reference the plugin (obviously it requires jQuery):
     
 Or to reference the production release:
 
-    <script src='/javascripts/jquery.sexypost-1.0.0.min.js' type='text/javascript'></script>
+    <script src='/javascripts/jquery.sexypost-1.0.4.min.js' type='text/javascript'></script>
     
 Declare your form as usual:
 
@@ -61,7 +61,7 @@ And these properties:
 
     async        : true                                      // set to true to submit the form asynchronously
     autoclear    : false                                     // automatically clear the form on successful post
-    requestHeader: null,                                     // additional request headers to send
+    requestHeader: null,                                     // for additional request headers to send
 
 Submit Triggers
 ---------------
