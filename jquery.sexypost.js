@@ -27,9 +27,10 @@
     if (options) $.extend(config, options);
 
     this.each(function(){
-      for (event in events) {
-        if (config[events[event]]) {
-          $(this).bind("sexyPost." + events[event], config[events[event]]);
+      for (var i=0;i<events.length;i++) {
+        var event = events[i];
+        if (config[event]) {
+          $(this).bind("sexyPost." + event, config[event]);
         }
       }
 
